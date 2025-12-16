@@ -23,6 +23,13 @@
 #include <time.h>
 #include <stdio.h>
 
+#if !defined(_WIN32)
+#include <strings.h>
+#ifndef strnicmp
+#define strnicmp strncasecmp
+#endif
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -62,7 +69,7 @@ enum TbErrorCode {
 };
 
 /******************************************************************************/
-#pragma pack(1)
+#pragma pack(push, 1)
 
 // These types should be deprecated because we have stdint.h now.
 typedef unsigned long ulong;
@@ -120,7 +127,7 @@ extern struct DebugMessage ** debug_messages_tail;
 
 
 
-#pragma pack()
+#pragma pack(pop)
 /******************************************************************************/
 extern const char *log_file_name;
 extern int debug_display_consolelog;

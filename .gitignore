@@ -37,3 +37,6 @@ res/keeperfx_icon.ico
 /deps/*.tar.gz
 /cppcheck.cache
 /src/ver_defs.h
+
+# log file
+keeperfx.log

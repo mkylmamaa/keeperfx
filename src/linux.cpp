@@ -11,8 +11,16 @@
 #include <unistd.h>
 #include <fnmatch.h>
 
+#ifndef FNM_CASEFOLD
+#define FNM_CASEFOLD 0
+#endif
+
 extern "C" const char * get_os_version() {
+#ifdef __APPLE__
+    return "macOS";
+#else
     return "Linux";
+#endif
 }
 
 extern "C" const void * get_image_base()

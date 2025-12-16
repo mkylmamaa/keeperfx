@@ -35,16 +35,24 @@ extern "C" {
  */
 static inline void cpuid(int code, uint32_t *a, uint32_t *d) {
   // This wouldn't work on Windows because...?
+#if defined(__i386__) || defined(__x86_64__)
   asm volatile("cpuid":"=a"(*a),"=d"(*d):"0"(code):"ecx","ebx");
+#else
+  (void)code; (void)a; (void)d;
+#endif
 }
 
 /** Issue a complete request, storing general registers output in an array.
  */
 static inline void cpuid_string(int code, void * destination) {
+#if defined(__i386__) || defined(__x86_64__)
   uint32_t * where = (uint32_t *) destination;
   // This wouldn't work on Windows because...?
   asm volatile("cpuid":"=a"(*where),"=b"(*(where+1)),
       "=c"(*(where+2)),"=d"(*(where+3)):"0"(code));
+#else
+  (void)code; (void)destination;
+#endif
 }
 /******************************************************************************/
 

@@ -40,7 +40,6 @@ extern "C" {
 // After that much milliseconds in main menu, demo is started
 #define MNU_DEMO_IDLE_TIME 30000
 /******************************************************************************/
-#pragma pack(1)
 
 enum DemoItem_Kind {
     DIK_PlaySmkVideo,
@@ -296,7 +295,6 @@ extern int fe_computer_players;
 extern long old_mouse_over_button;
 extern long frontend_mouse_over_button;
 
-#pragma pack()
 /******************************************************************************/
 // Variables - no longer imported
 extern struct GuiMenu frontend_main_menu;

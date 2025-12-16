@@ -44,6 +44,7 @@ typedef char SteamErrMsg[1024];
 typedef ESteamAPIInitResult(__cdecl *SteamApiInitFunc)(SteamErrMsg *err);
 typedef void(__cdecl *SteamApiShutdownFunc)();
 
+#ifdef _WIN32
 // Type Punning union for the Steam API Init function to go from __cdecl to __stdcall
 union SteamApiInitUnion
 {
@@ -54,6 +55,7 @@ union SteamApiInitUnion
 // Variables
 SteamApiInitFunc SteamAPI_Init;
 SteamApiShutdownFunc SteamAPI_Shutdown;
+#endif
 
 /**
  * @brief Initializes the Steam API in KeeperFX.

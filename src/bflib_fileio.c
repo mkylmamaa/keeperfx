@@ -31,6 +31,10 @@
 #include <limits.h>
 #include <time.h>
 
+#if !defined(_WIN32)
+#include <unistd.h>
+#endif
+
 #include "bflib_basics.h"
 #include "bflib_datetm.h"
 
@@ -63,10 +67,8 @@ int create_directory_for_file(const char * fname)
     tmp[separator - fname] = 0;
 #if defined _WIN32
     if (mkdir(tmp) != 0) {
-#elif defined (__linux__)
-    if (mkdir(tmp, 0755) != 0) {
 #else
-#error Unsupported platform
+    if (mkdir(tmp, 0755) != 0) {
 #endif
       if (errno != EEXIST) {
         free(tmp);
